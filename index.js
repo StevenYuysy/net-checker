@@ -1,6 +1,8 @@
 const program = require("commander");
 const path = require("path");
 const debug = require("debug")("net-checker");
+const ora = require("ora");
+const Table = require("cli-table");
 const { readAndParseConf } = require("./src/conf");
 const { checkResult } = require("./src/net");
 
@@ -24,12 +26,25 @@ debug("environment:", envValue || "no environment given");
 
 if (cmdValue === "check") {
   const urls = readAndParseConf(path.resolve(envValue));
+  const spinner = ora("net-checker loading").start();
+  const spinnerCb = text => {
+    spinner.text = "send http GET request to " + text;
+  };
   debug(urls);
-  checkResult(urls)
+  checkResult(urls, spinnerCb)
     .then(result => {
-      console.log(result.map(JSON.stringify).join("\n"));
+      spinner.stop();
+      const table = new Table();
+      result = result.map(r => {
+        if (r.success) return [r.url, "✅"];
+        return [r.url, "❌"];
+      });
+      table.push(["url", "status"]);
+      table.push(...result);
+      console.log(table.toString());
     })
     .catch(err => {
+      spinner.error();
       console.error(err);
     });
 } else {

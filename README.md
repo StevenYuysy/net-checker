@@ -6,6 +6,7 @@
 
 ```
 https://www.github.com
+https://www.bing.com
 https://www.google.com
 ```
 
@@ -14,8 +15,15 @@ https://www.google.com
 4. get the result
 
 ```
-https://www.github.com success
-https://www.google.com success
+┌────────────────────────┬────────┐
+│ url                    │ status │
+├────────────────────────┼────────┤
+│ https://www.github.com │ ✅     │
+├────────────────────────┼────────┤
+│ https://www.bing.com   │ ✅     │
+├────────────────────────┼────────┤
+│ https://www.google.com │ ❌     │
+└────────────────────────┴────────┘
 ```
 
 ## documentation
@@ -23,7 +31,14 @@ https://www.google.com success
 ### possible result
 
 1. success
-2. failed
+2. failed (timeout or error)
+
+### options
+
+#### environments
+
+- DEBUG=net-checker: get verbose output
+- CONNECTION_TIMEOUT=10000: change connection timeout
 
 ## contribution
 
