@@ -40,6 +40,14 @@ https://www.google.com
 - DEBUG=net-checker: get verbose output
 - CONNECTION_TIMEOUT=10000: change connection timeout
 
+#### command
+
+`net-checker check <source> <destination>`
+
+source: the source url txt file, it is required!
+
+destination: the export raw result, it is optional.
+
 ## contribution
 
 ```bash
