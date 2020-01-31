@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const program = require("commander");
 const path = require("path");
 const debug = require("debug")("net-checker");
@@ -6,9 +8,10 @@ const fs = require("fs");
 const Table = require("cli-table");
 const { readAndParseConf } = require("./src/conf");
 const { checkResult } = require("./src/net");
+const package = require("./package.json");
 
 program
-  .version("0.1.0")
+  .version(package.version)
   .arguments("<cmd> [env] [dest]")
   .action(function(cmd, env, dest) {
     cmdValue = cmd;

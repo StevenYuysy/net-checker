@@ -1,13 +1,17 @@
 {
   "name": "net-checker",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "",
   "main": "index.js",
+  "bin": {
+    "net-checker": "index.js"
+  },
   "scripts": {
     "test": "jest"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "stevenyuysy",
+  "homepage": "https://github.com/StevenYuysy/net-checker",
+  "license": "MIT",
   "dependencies": {
     "axios": "^0.19.2",
     "cli-table": "^0.3.1",
