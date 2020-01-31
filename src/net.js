@@ -17,10 +17,11 @@ async function check(url, cb) {
     if (cb) cb(url);
     const CancelToken = axios.CancelToken;
     const source = CancelToken.source();
-    setTimeout(() => {
+    let timer = setTimeout(() => {
       source.cancel();
     }, CONNECTION_TIMEOUT);
     await axios.get(url, { cancelToken: source.token });
+    clearTimeout(timer);
     return { url, success: true, message: "ok" };
   } catch (e) {
     debug("[check error]", e);
