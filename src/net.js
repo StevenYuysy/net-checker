@@ -21,10 +21,10 @@ async function check(url, cb) {
       source.cancel();
     }, CONNECTION_TIMEOUT);
     await axios.get(url, { cancelToken: source.token });
-    return { url, success: true };
+    return { url, success: true, message: "ok" };
   } catch (e) {
     debug("[check error]", e);
-    return { url, success: false };
+    return { url, success: false, message: e.toString() };
   }
 }
 
